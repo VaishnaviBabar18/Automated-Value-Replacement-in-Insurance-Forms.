@@ -1,0 +1,142 @@
+[
+  {
+    "fieldname": "Scheduled Personal Property Endorsement - Antiques - Amount of Insurance",
+    "mnemonic": "<<SPINSUM>>",
+    "value": "$400"
+  },
+  {
+    "fieldname": "Scheduled Personal Property Endorsement - Antiques - Premium",
+    "mnemonic": "<<SPIPREM>>",
+    "value": "$40"
+  },
+  {
+    "fieldname": "Scheduled Personal Property Endorsement - Bicycles - Amount of Insurance",
+    "mnemonic": "<<SPESUM>>",
+    "value": "$400"
+  },
+  {
+    "fieldname": "Scheduled Personal Property Endorsement - Bicycles - Premium",
+    "mnemonic": "<<SPBIPRE>>",
+    "value": "$40"
+  },
+  {
+    "fieldname": "Scheduled Personal Property Endorsement - Cameras and Projection Equipment (non-professional) - Amount of Insurance",
+    "mnemonic": "<<SCAMSUM>>",
+    "value": "$400"
+  },
+  {
+    "fieldname": "Scheduled Personal Property Endorsement - Cameras and Projection Equipment (non-professional) - Premium",
+    "mnemonic": "<<SCAMPREM>>",
+    "value": "$40"
+  },
+  {
+    "fieldname": "Scheduled Personal Property Endorsement - Coins, rare and current - Amount of Insurance",
+    "mnemonic": "<<SCOINSUM>>",
+    "value": "$400"
+  },
+  {
+    "fieldname": "Scheduled Personal Property Endorsement - Coins, rare and current - Premium",
+    "mnemonic": "<<SCOINPREM>>",
+    "value": "$40"
+  },
+  {
+    "fieldname": "Scheduled Personal Property Endorsement - Fine Arts - Amount of Insurance",
+    "mnemonic": "<<SINEARTSUM>>",
+    "value": "$400"
+  },
+  {
+    "fieldname": "Scheduled Personal Property Endorsement - Fine Arts - Premium",
+    "mnemonic": "<<SINEARTPREM>>",
+    "value": "$40"
+  },
+  {
+    "fieldname": "Scheduled Personal Property Endorsement - Furs - Amount of Insurance",
+    "mnemonic": "<<SPPFURSUM>>",
+    "value": "$400"
+  },
+  {
+    "fieldname": "Scheduled Personal Property Endorsement - Furs - Premium",
+    "mnemonic": "<<SPPFURPREM>>",
+    "value": "$40"
+  },
+  {
+    "fieldname": "Scheduled Personal Property Endorsement - Golfer’s Equipment - Amount of Insurance",
+    "mnemonic": "<<SPPGOLFERSUM>>",
+    "value": "$400"
+  },
+  {
+    "fieldname": "Scheduled Personal Property Endorsement - Golfer’s Equipment - Premium",
+    "mnemonic": "<<SPPGOLFERPREM>>",
+    "value": "$40"
+  },
+  {
+    "fieldname": "Scheduled Personal Property Endorsement - Guns - Amount of Insurance",
+    "mnemonic": "<<SPPGUNSUM>>",
+    "value": "$400"
+  },
+  {
+    "fieldname": "Scheduled Personal Property Endorsement - Guns - Premium",
+    "mnemonic": "<<SPPGUNPREM>>",
+    "value": "$40"
+  },
+  {
+    "fieldname": "Scheduled Personal Property Endorsement - Jewelry - Amount of Insurance",
+    "mnemonic": "<<SPPJEWELSUM>>",
+    "value": "$400"
+  },
+  {
+    "fieldname": "Scheduled Personal Property Endorsement - Jewelry - Premium",
+    "mnemonic": "<<SPPJEWELPREM>>",
+    "value": "$40"
+  },
+  {
+    "fieldname": "Scheduled Personal Property Endorsement - Miscellaneous Personal Property - Amount of Insurance",
+    "mnemonic": "<<SPPMISCINSUM>>",
+    "value": "$400"
+  },
+  {
+    "fieldname": "Scheduled Personal Property Endorsement - Miscellaneous Personal Property - Premium",
+    "mnemonic": "<<SPPMISCINPREM>>",
+    "value": "$40"
+  },
+  {
+    "fieldname": "Scheduled Personal Property Endorsement - Musical Instruments (non-professional) - Amount of Insurance",
+    "mnemonic": "<<SPPMUSICSUM>>",
+    "value": "$400"
+  },
+  {
+    "fieldname": "Scheduled Personal Property Endorsement - Musical Instruments (non-professional) - Premium",
+    "mnemonic": "<<SPPMUSICPREM>>",
+    "value": "$40"
+  },
+  {
+    "fieldname": "Scheduled Personal Property Endorsement - Other Sports Equipment - Amount of Insurance",
+    "mnemonic": "<<SPPOSUM>>",
+    "value": "$400"
+  },
+  {
+    "fieldname": "Scheduled Personal Property Endorsement - Other Sports Equipment - Premium",
+    "mnemonic": "<<SPPOPREM>>",
+    "value": "$40"
+  },
+  {
+    "fieldname": "Scheduled Personal Property Endorsement - Silverware - Amount of Insurance",
+    "mnemonic": "<<SPPSILVERSUM>>",
+    "value": "$400"
+  },
+  {
+    "fieldname": "Scheduled Personal Property Endorsement - Silverware - Premium",
+    "mnemonic": "<<SPPSILVERPREM>>",
+    "value": "$40"
+  },
+  {
+    "fieldname": "Scheduled Personal Property Endorsement - Stamps - Amount of Insurance",
+    "mnemonic": "<<SPPSTAMPSUM>>",
+    "value": "$400"
+  },
+  {
+    "fieldname": "Scheduled Personal Property Endorsement - Stamps - Premium",
+    "mnemonic": "<<SPPSTAMPPREM>>",
+    "value": "$40"
+  }
+]
