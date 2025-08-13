@@ -7,11 +7,9 @@ JSON_FILE = "mapping_data.json"
 OUTPUT_FILE = "outputt.docx"
 
 def normalize(text):
-    """Lowercase, remove punctuation and extra spaces for matching."""
     return re.sub(r'\s+', ' ', re.sub(r'[^\w\s]', '', text)).strip().lower()
 
 def load_mapping(json_path):
-    """Load JSON as normalized description -> field type -> value -> mnemonic"""
     with open(json_path, 'r', encoding='utf-8') as f:
         data = json.load(f)
     mapping = {}
@@ -27,7 +25,6 @@ def load_mapping(json_path):
     return mapping
 
 def find_best_match(table_desc, mapping_keys):
-    """Find JSON description that is inside table description or vice versa."""
     table_desc_norm = normalize(table_desc)
     for key in mapping_keys:
         if key in table_desc_norm or table_desc_norm in key:
