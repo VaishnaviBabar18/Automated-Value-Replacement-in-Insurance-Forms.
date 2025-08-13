@@ -1,62 +1,88 @@
 from docx import Document
 import json
 import os
-JSON_FILE = "mapping_data.json"  # Mapping jason file helper
-OUTPUT_FILE = "output.docx"      # This will be the generated output file
+import re
+
+JSON_FILE = "mapping_data.json"
+OUTPUT_FILE = "outputt.docx"
+
+def normalize(text):
+    """Lowercase, remove punctuation and extra spaces for matching."""
+    return re.sub(r'\s+', ' ', re.sub(r'[^\w\s]', '', text)).strip().lower()
+
 def load_mapping(json_path):
-    """Load mapping from your JSON file- value → mnemonic."""
+    """Load JSON as normalized description -> field type -> value -> mnemonic"""
     with open(json_path, 'r', encoding='utf-8') as f:
         data = json.load(f)
     mapping = {}
-    if isinstance(data, list):
-        for item in data:
-            if "value" in item and "mnemonic" in item:
-                mapping[str(item["value"])] = str(item["mnemonic"])
+    for item in data:
+        fieldname = item.get("fieldname", "")
+        value = str(item.get("value", "")).strip()
+        mnemonic = str(item.get("mnemonic", "")).strip()
+        parts = fieldname.split(" - ")
+        if len(parts) >= 3:
+            description = normalize(parts[1].strip())
+            field_type = parts[-1].strip()
+            mapping.setdefault(description, {}).setdefault(field_type, {})[normalize(value)] = mnemonic
     return mapping
-def replace_text_in_paragraph(paragraph, mapping):
-    """Replacing text in a paragraph preserving formatting."""
-    if not paragraph.runs:
-        return
-    full_text = ''.join(run.text for run in paragraph.runs)
-    changed = False
-    for old_val, new_val in mapping.items():
-        if old_val in full_text:
-            full_text = full_text.replace(old_val, new_val)
-            changed = True
-    if changed:
-        style = paragraph.runs[0].style
-        paragraph.clear()
-        run = paragraph.add_run(full_text)
-        run.style = style
-def replace_in_tables(table, mapping):
+
+def find_best_match(table_desc, mapping_keys):
+    """Find JSON description that is inside table description or vice versa."""
+    table_desc_norm = normalize(table_desc)
+    for key in mapping_keys:
+        if key in table_desc_norm or table_desc_norm in key:
+            return key
+    return None
+
+def replace_in_table(table, mapping):
+    mapping_keys = list(mapping.keys())
     for row in table.rows:
-        for cell in row.cells:
-            process_block(cell, mapping)
-def process_block(container, mapping):
-    """Processing paragraphs and tables."""
-    for para in container.paragraphs:
-        replace_text_in_paragraph(para, mapping)
-    for tbl in getattr(container, 'tables', []):
-        replace_in_tables(tbl, mapping)
+        cells = row.cells
+        if len(cells) >= 4:
+            table_desc = cells[1].text.strip()
+            matched_desc = find_best_match(table_desc, mapping_keys)
+            if matched_desc:
+                # Amount of Insurance
+                current_amount = normalize(cells[2].text.strip())
+                if "Amount of Insurance" in mapping[matched_desc]:
+                    amt_dict = mapping[matched_desc]["Amount of Insurance"]
+                    if current_amount in amt_dict:
+                        cells[2].text = amt_dict[current_amount]
+                # Premium
+                current_premium = normalize(cells[3].text.strip())
+                if "Premium" in mapping[matched_desc]:
+                    prem_dict = mapping[matched_desc]["Premium"]
+                    if current_premium in prem_dict:
+                        cells[3].text = prem_dict[current_premium]
+
+def process_doc(doc, mapping):
+    # Main body tables
+    for table in doc.tables:
+        replace_in_table(table, mapping)
+    # Headers and footers
+    for section in doc.sections:
+        for container in [section.header, section.footer]:
+            for table in container.tables:
+                replace_in_table(table, mapping)
 
 def main():
-    input_file = input("Enter the file name (with .docx extension) : ").strip()
+    input_file = input("Enter DOCX file name: ").strip()
     if not os.path.isfile(input_file):
         print(f"File '{input_file}' not found!")
         return
     if not os.path.isfile(JSON_FILE):
-        print(f"Mapping JSON file '{JSON_FILE}' not found!")
+        print(f"Mapping JSON '{JSON_FILE}' not found!")
         return
+
     mapping = load_mapping(JSON_FILE)
     if not mapping:
-        print("Mapping is empty.")
+        print("Mapping is empty!")
         return
+
     doc = Document(input_file)
-    process_block(doc, mapping)
-    for section in doc.sections:
-        process_block(section.header, mapping)
-        process_block(section.footer, mapping)
+    process_doc(doc, mapping)
     doc.save(OUTPUT_FILE)
-    print(f"Replacements done! Output saved as '{OUTPUT_FILE}'")
+    print(f"All replacements done! Output saved as '{OUTPUT_FILE}'")
+
 if __name__ == "__main__":
     main()
